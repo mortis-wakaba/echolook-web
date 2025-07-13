@@ -12,11 +12,11 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#6366F1', // 主色调：紫色
-                        secondary: '#F97316', // 辅助色：橙色
+                        primary: '#6366F1',
+                        secondary: '#F97316',
                         neutral: {
                             100: '#F3F4F6',
-                            200: '#E5E7EB', 
+                            200: '#E5E7EB',
                             300: '#D1D5DB',
                             400: '#9CA3AF',
                             500: '#6B7280',
@@ -40,35 +40,46 @@
                             '50%': { transform: 'translateY(-10px)' },
                         }
                     }
-                },
+                }
             }
         }
     </script>
     <style type="text/tailwindcss">
         @layer utilities {
-            .content-auto {
-                content-visibility: auto;
-            }
-            .text-shadow {
-                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            }
-            .text-shadow-lg {
-                text-shadow: 0 4px 8px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
-            }
-            .bg-gradient-custom {
-                background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
-            }
-            .card-hover {
-                transition: all 0.3s ease;
-            }
+            .content-auto { content-visibility: auto; }
+            .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+            .text-shadow-lg { text-shadow: 0 4px 8px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08); }
+            .bg-gradient-custom { background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%); }
+            .card-hover { transition: all 0.3s ease; }
             .card-hover:hover {
                 transform: translateY(-5px);
-                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+                            0 10px 10px -5px rgba(0, 0, 0, 0.04);
             }
             .option-card.selected {
                 border-color: #6366F1;
-                background-color: #EEF2FF; /* primary-50 */
+                background-color: #EEF2FF;
                 box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.5);
+            }
+            .chat-message { max-width: 80%; padding: 0.75rem 1rem; border-radius: 0.75rem; margin-bottom: 1rem; word-wrap: break-word; }
+            .chat-message.ai {
+                background-color: #E5E7EB; align-self: flex-start; margin-right: auto; border-bottom-left-radius: 0;
+            }
+            .chat-message.user {
+                background-color: #6366F1; color: white; align-self: flex-end; margin-left: auto; border-bottom-right-radius: 0;
+            }
+            .chat-options-container {
+                display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;
+            }
+            .chat-options-container .option-card {
+                flex-grow: 1; text-align: center; padding: 0.5rem 1rem;
+                border-radius: 9999px; border: 1px solid #D1D5DB; cursor: pointer; transition: all 0.2s ease;
+            }
+            .chat-options-container .option-card:hover {
+                border-color: #6366F1; background-color: #F3F4F6;
+            }
+            .chat-options-container .option-card.selected {
+                border-color: #6366F1; background-color: #6366F1; color: white;
             }
         }
     </style>
@@ -90,26 +101,20 @@
                 <a href="#" class="text-neutral-600 hover:text-primary transition-colors">联系我们</a>
             </div>
             <div class="flex items-center space-x-4">
-                <button class="hidden md:block px-4 py-2 rounded-full bg-primary text-white hover:bg-primary/90 transition-colors">
-                    登录
-                </button>
+                <button class="hidden md:block px-4 py-2 rounded-full bg-primary text-white hover:bg-primary/90 transition-colors">登录</button>
                 <button class="md:hidden text-neutral-700">
                     <i class="fa fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
     </nav>
-
-    <!-- 主内容区 -->
     <main class="flex-grow pt-16">
         <!-- 首页 -->
         <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-neutral-100 -z-10"></div>
-            
             <!-- 装饰元素 -->
             <div class="absolute top-20 right-10 w-64 h-64 rounded-full bg-secondary/10 blur-3xl -z-10 animate-pulse-slow"></div>
             <div class="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-primary/10 blur-3xl -z-10 animate-pulse-slow"></div>
-            
             <div class="container mx-auto px-4 py-12 md:py-24">
                 <div class="flex flex-col md:flex-row items-center gap-12">
                     <div class="md:w-1/2 space-y-8">
@@ -134,21 +139,21 @@
                                 <p class="text-neutral-500 text-sm">千禧年流行风格</p>
                             </div>
                         </div>
-                        <div class="card-hover bg-white rounded-xl overflow-hidden shadow-md"> <!-- Removed transform translate-y-8 -->
+                        <div class="card-hover bg-white rounded-xl overflow-hidden shadow-md">
                             <img src="https://th.bing.com/th/id/R.cb955fe05fbe35bb0c10a1d8c8c32308?rik=5gMpi4uSVQkA1w&riu=http%3a%2f%2fn.sinaimg.cn%2fsinacn20190715s%2f708%2fw640h868%2f20190715%2f20da-hzuhxyp9764504.jpg&ehk=SKak3xlfDCsWCWrmJ9ajNkdEF3PuAYd%2b6wy3xqVZzs8%3d&risl=&pid=ImgRaw&r=0" alt="复古风格波点连衣裙" class="w-full h-64 object-cover">
                             <div class="p-4">
                                 <h3 class="font-semibold text-lg">复古风格</h3>
                                 <p class="text-neutral-500 text-sm">怀旧经典时尚</p>
                             </div>
                         </div>
-                        <div class="card-hover bg-white rounded-xl overflow-hidden shadow-md"> <!-- Removed transform translate-y-4 -->
+                        <div class="card-hover bg-white rounded-xl overflow-hidden shadow-md">
                             <img src="https://th.bing.com/th/id/R.00db189a22a444b71e2398f6acb76224?rik=mc6o0cnoLPiikQ&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fimages%2f20190827%2f7bdfbbd1e6ef4df989db919f300be17b.jpeg&ehk=FyyVWFWG188Arx807K%2bgAet2%2fhmIh6WKGXs%2fBr%2fX2A4%3d&risl=&pid=ImgRaw&r=0" alt="美式风格牛仔夹克" class="w-full h-64 object-cover">
                             <div class="p-4">
                                 <h3 class="font-semibold text-lg">美式风格</h3>
                                 <p class="text-neutral-500 text-sm">休闲自在设计</p>
                             </div>
                         </div>
-                        <div class="card-hover bg-white rounded-xl overflow-hidden shadow-md"> <!-- Removed transform -translate-y-4 -->
+                        <div class="card-hover bg-white rounded-xl overflow-hidden shadow-md">
                             <img src="https://th.bing.com/th/id/R.2881f639495f2f2a74a66771ae809b73?rik=fbFc2VKgfJpdsg&riu=http%3a%2f%2fn.sinaimg.cn%2fsinacn14%2f121%2fw380h541%2f20180404%2fb20a-fysuuya4754853.jpg&ehk=e3vCjYDKOhKMdE7bceIXi6MsU983YcE1bpoRUzMht%2fA%3d&risl=&pid=ImgRaw&r=0" alt="极简风格白衬衫" class="w-full h-64 object-cover">
                             <div class="p-4">
                                 <h3 class="font-semibold text-lg">极简风格</h3>
@@ -160,594 +165,227 @@
             </div>
         </section>
 
-        <!-- 测试页 -->
+        <!-- 测试页 - 对话式界面 -->
         <section id="test" class="min-h-screen flex items-center justify-center bg-white hidden">
             <div class="container mx-auto px-4 py-12">
-                <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl p-8 md:p-12">
+                <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl p-8 md:p-12 flex flex-col h-[70vh]">
                     <div class="flex justify-between items-center mb-8">
                         <h2 class="text-2xl md:text-3xl font-bold text-neutral-800">性格与风格测试</h2>
                         <div class="text-sm text-neutral-500">
-                            <span id="progress-text">问题 1/10</span>
+                            <span id="progress-text">问题 1/N</span>
                         </div>
                     </div>
-                    
                     <div class="w-full bg-neutral-200 rounded-full h-2 mb-8">
-                        <div id="progress-bar" class="bg-gradient-custom h-2 rounded-full" style="width: 10%"></div>
+                        <div id="progress-bar" class="bg-gradient-custom h-2 rounded-full" style="width: 0%"></div>
                     </div>
-                    
-                    <div id="test-questions">
-                        <!-- 问题1 -->
-                        <div class="question-slide active" data-question-id="color_preference">
-                            <h3 class="text-xl font-semibold mb-6">你更喜欢哪种颜色搭配？</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="vibrant">
-                                    <div class="flex items-center space-x-4">
-                                        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500"></div>
-                                        <span>鲜艳明亮的色彩</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="neutral">
-                                    <div class="flex items-center space-x-4">
-                                        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-gray-700 to-gray-900"></div>
-                                        <span>低调的中性色调</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="natural">
-                                    <div class="flex items-center space-x-4">
-                                        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-green-500 to-yellow-500"></div>
-                                        <span>自然柔和的色彩</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="bold">
-                                    <div class="flex items-center space-x-4">
-                                        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-red-500 to-pink-500"></div>
-                                        <span>大胆鲜明的对比色</span>
-                                    </div>
-                                </div>
-                            </div>
+                    <div id="chat-messages" class="flex-grow overflow-y-auto space-y-4 p-4 bg-neutral-50 rounded-lg mb-6 shadow-inner">
+                        <!-- AI 和用户消息将在此处动态添加 -->
+                    </div>
+                    <div id="user-input-area" class="flex flex-col gap-4">
+                        <div id="input-options-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- 选项将在此处动态添加 -->
                         </div>
-                        
-                        <!-- 问题2 -->
-                        <div class="question-slide hidden" data-question-id="style_tendency">
-                            <h3 class="text-xl font-semibold mb-6">你更倾向于哪种服装风格？</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="trendy">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-star text-yellow-400 text-xl"></i>
-                                        <span>时尚前卫，紧跟潮流</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="unique">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-paint-brush text-blue-500 text-xl"></i>
-                                        <span>独特个性，与众不同</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="casual">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-coffee text-brown-500 text-xl"></i>
-                                        <span>舒适休闲，注重实用性</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="elegant">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-tie text-gray-700 text-xl"></i>
-                                        <span>优雅精致，注重细节</span>
-                                    </div>
-                                </div>
-                            </div>
+                        <div id="text-input-container" class="flex gap-2 hidden">
+                            <input type="text" id="text-input-field" placeholder="请输入你的回答..." class="flex-grow p-3 border border-neutral-300 rounded-full focus:outline-none focus:ring-2 focus:ring-primary/50">
+                            <button id="send-text-answer-btn" class="px-6 py-3 bg-primary text-white rounded-full font-semibold hover:bg-primary/90 transition-colors">
+                                发送 <i class="fa fa-paper-plane ml-2"></i>
+                            </button>
                         </div>
-                        
-                        <!-- 问题3 -->
-                        <div class="question-slide hidden" data-question-id="clothing_selection">
-                            <h3 class="text-xl font-semibold mb-6">你通常如何选择服装？</h3>
-                            <div class="space-y-4">
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="trends">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-shopping-bag text-purple-500 text-xl"></i>
-                                        <span>根据当季流行趋势选择</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="confidence">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-heart text-red-500 text-xl"></i>
-                                        <span>选择让自己感觉自信的款式</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="occasion">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-calendar text-blue-500 text-xl"></i>
-                                        <span>根据场合选择合适的服装</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="cost_effective">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-money text-green-500 text-xl"></i>
-                                        <span>选择性价比高的基础款</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- 问题4 -->
-                        <div class="question-slide hidden" data-question-id="material_preference">
-                            <h3 class="text-xl font-semibold mb-6">你最喜欢的服装材质是什么？</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="natural_fibers">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-leaf text-green-500 text-xl"></i>
-                                        <span>天然材质（棉、麻、丝）</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="functional_fabrics">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-snowflake-o text-blue-300 text-xl"></i>
-                                        <span>功能性材质（防水、透气）</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="leather">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-bolt text-yellow-500 text-xl"></i>
-                                        <span>皮革/人造皮革</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="wool_cashmere">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-paw text-brown-500 text-xl"></i>
-                                        <span>羊毛/羊绒</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- 问题5 -->
-                        <div class="question-slide hidden" data-question-id="shopping_method">
-                            <h3 class="text-xl font-semibold mb-6">你最喜欢的购物方式是？</h3>
-                            <div class="space-y-4">
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="mall">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-shopping-bag text-purple-500 text-xl"></i> <!-- Changed from shopping-mall as it's not in FA 4.7 -->
-                                        <span>逛大型商场</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="boutique">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-search text-blue-500 text-xl"></i>
-                                        <span>探索独立设计师店</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="online">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-laptop text-gray-700 text-xl"></i>
-                                        <span>在线购物</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="vintage">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-tshirt text-green-500 text-xl"></i>
-                                        <span>二手市场/古着店</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- 问题6 -->
-                        <div class="question-slide hidden" data-question-id="clothing_focus">
-                            <h3 class="text-xl font-semibold mb-6">你最注重服装的哪个方面？</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="design">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-paint-brush text-purple-500 text-xl"></i>
-                                        <span>设计和款式</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="color_pattern">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-tint text-blue-500 text-xl"></i>
-                                        <span>颜色和图案</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="quality">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-check-circle text-green-500 text-xl"></i>
-                                        <span>质量和耐用性</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="price">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-tag text-red-500 text-xl"></i>
-                                        <span>价格</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- 问题7 -->
-                        <div class="question-slide hidden" data-question-id="favorite_season">
-                            <h3 class="text-xl font-semibold mb-6">你最喜欢的季节是？</h3>
-                            <div class="space-y-4">
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="summer">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-sun-o text-yellow-500 text-xl"></i>
-                                        <span>夏天</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="autumn">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-leaf text-orange-500 text-xl"></i>
-                                        <span>秋天</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="winter">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-snowflake-o text-blue-300 text-xl"></i>
-                                        <span>冬天</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="spring">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-tree text-green-500 text-xl"></i>
-                                        <span>春天</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- 问题8 -->
-                        <div class="question-slide hidden" data-question-id="clothing_type">
-                            <h3 class="text-xl font-semibold mb-6">你最喜欢的服装类型是？</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="casual_wear">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-tshirt text-blue-500 text-xl"></i>
-                                        <span>休闲装</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="formal_wear">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-tie text-gray-700 text-xl"></i>
-                                        <span>正装</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="sportswear">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-futbol-o text-purple-500 text-xl"></i> <!-- Changed from scissors to a more relevant icon -->
-                                        <span>运动装</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="fashion_wear">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-diamond text-pink-500 text-xl"></i>
-                                        <span>时尚装</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- 问题9 -->
-                        <div class="question-slide hidden" data-question-id="favorite_accessory">
-                            <h3 class="text-xl font-semibold mb-6">你最喜欢的配饰是什么？</h3>
-                            <div class="space-y-4">
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="glasses">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-glasses text-blue-500 text-xl"></i>
-                                        <span>眼镜</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="hat">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-hat-cowboy text-brown-500 text-xl"></i>
-                                        <span>帽子</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="watch">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-watch text-gray-700 text-xl"></i>
-                                        <span>手表</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="jewelry">
-                                    <div class="flex items-center space-x-4">
-                                        <i class="fa fa-diamond text-yellow-500 text-xl"></i> <!-- Changed from ring to diamond for consistency -->
-                                        <span>首饰</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- 问题10 -->
-                        <div class="question-slide hidden" data-question-id="favorite_brand">
-                            <h3 class="text-xl font-semibold mb-6">你最喜欢的服装品牌是？</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="fast_fashion">
-                                    <div class="flex items-center space-x-4">
-                                        <span>ZARA、H&M、优衣库</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="designer_brands">
-                                    <div class="flex items-center space-x-4">
-                                        <span>独立设计师品牌、小众品牌</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="luxury_brands">
-                                    <div class="flex items-center space-x-4">
-                                        <span>奢侈品牌、高端定制</span>
-                                    </div>
-                                </div>
-                                <div class="option-card p-4 border border-neutral-200 rounded-lg cursor-pointer hover:border-primary transition-colors" data-answer="sportswear_brands">
-                                    <div class="flex items-center space-x-4">
-                                        <span>Nike、Adidas、Lululemon</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- submit 按钮已移除 -->
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- 思考中页面 -->
-        <section id="thinking" class="min-h-screen flex flex-col items-center justify-center bg-neutral-100 hidden">
-            <div class="text-center p-8 rounded-xl">
-                <div class="animate-spin-slow text-primary text-6xl mb-6">
-                    <i class="fa fa-spinner fa-spin"></i>
-                </div>
-                <h2 class="text-3xl font-bold text-neutral-800 mb-4">思考中....</h2>
-                <p class="text-neutral-600 text-lg">AI正在为您量身定制专属穿搭推荐，请稍候...</p>
             </div>
         </section>
 
         <!-- 结果页 -->
-        <section id="result" class="min-h-screen flex flex-col items-center justify-center bg-neutral-50 hidden">
-            <div class="container mx-auto px-4 py-12 md:py-24">
-                <h2 class="text-4xl font-bold text-neutral-800 text-center mb-12">你的专属穿搭推荐</h2>
-                <div id="outfit-recommendations" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- 穿搭推荐将在这里动态加载 -->
-                </div>
-                <div class="text-center mt-12">
-                    <button id="rematch-btn" class="px-8 py-4 bg-secondary text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-secondary/50">
-                        不喜欢，重新搭配 <i class="fa fa-refresh ml-2"></i>
-                    </button>
+        <section id="result" class="min-h-screen flex items-center justify-center bg-gray-50 hidden">
+            <div class="container mx-auto px-4 py-12">
+                <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl p-8 md:p-12 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">你的专属穿搭风格</h2>
+                    <!-- 回答“好”的推荐搭配 -->
+                    <div id="result-good" class="hidden">
+                        <h3 class="text-xl font-semibold mb-4">为你推荐搭配</h3>
+                        <div class="outfit-version mb-6">
+                            <img src="data:image/jpeg;base64,{{{base64_images0}}}" alt="Outfit 1" class="w-full h-auto object-cover rounded-lg mb-4">
+                            <ul class="text-left list-disc list-inside space-y-2">
+                                <li><a href="#" class="text-primary hover:underline">白色无袖上衣</a> - ￥120</li>
+                                <li><a href="#" class="text-primary hover:underline">蓝色长款半身裙</a> - ￥150</li>
+                                <li><a href="#" class="text-primary hover:underline">草编沙滩包</a> - ￥80</li>
+                            </ul>
+                        </div>
+                        <div class="outfit-version mb-6 hidden">
+                            <img src="data:image/jpeg;base64,{{{base64_images1}}}" alt="Outfit 2" class="w-full h-auto object-cover rounded-lg mb-4">
+                            <ul class="text-left list-disc list-inside space-y-2">
+                                <li><a href="#" class="text-primary hover:underline">黑色露肩上衣</a> - ￥130</li>
+                                <li><a href="#" class="text-primary hover:underline">黑色长款半身裙</a> - ￥160</li>
+                                <li><a href="#" class="text-primary hover:underline">白色帆布包</a> - ￥90</li>
+                            </ul>
+                        </div>
+                        <div class="outfit-version mb-6 hidden">
+                            <img src="data:image/jpeg;base64,{{{base64_images2}}}" alt="Outfit 3" class="w-full h-auto object-cover rounded-lg mb-4">
+                            <ul class="text-left list-disc list-inside space-y-2">
+                                <li><a href="#" class="text-primary hover:underline">绿色印花连衣裙</a> - ￥150</li>
+                                <li><a href="#" class="text-primary hover:underline">草编帽</a> - ￥60</li>
+                                <li><a href="#" class="text-primary hover:underline">草编手提包</a> - ￥40</li>
+                            </ul>
+                        </div>
+                        <button id="cycle-good" class="px-8 py-3 bg-primary text-white rounded-full font-semibold hover:bg-primary/90">换一套</button>
+                    </div>
+                    <!-- 回答“一般”的推荐搭配 -->
+                    <div id="result-soso" class="hidden">
+                        <h3 class="text-xl font-semibold mb-4">为你推荐搭配</h3>
+                        <div class="outfit-version mb-6">
+                            <img src="data:image/jpeg;base64,{{{base64_images3}}}" alt="Outfit 4" class="w-full h-auto object-cover rounded-lg mb-4">
+                            <ul class="text-left list-disc list-inside space-y-2">
+                                <li><a href="#" class="text-primary hover:underline">灰色条纹T恤</a> - ￥80</li>
+                                <li><a href="#" class="text-primary hover:underline">藏青阔腿裤</a> - ￥120</li>
+                                <li><a href="#" class="text-primary hover:underline">白色运动鞋</a> - ￥200</li>
+                            </ul>
+                        </div>
+                        <div class="outfit-version mb-6 hidden">
+                            <img src="data:image/jpeg;base64,{{{base64_images4}}}" alt="Outfit 5" class="w-full h-auto object-cover rounded-lg mb-4">
+                            <ul class="text-left list-disc list-inside space-y-2">
+                                <li><a href="#" class="text-primary hover:underline">白色棉质T恤</a> - ￥100</li>
+                                <li><a href="#" class="text-primary hover:underline">黑色直筒长裤</a> - ￥140</li>
+                                <li><a href="#" class="text-primary hover:underline">黑色马丁靴</a> - ￥900</li>
+                            </ul>
+                        </div>
+                        <div class="outfit-version mb-6 hidden">
+                            <img src="data:image/jpeg;base64,{{{base64_images5}}}" alt="Outfit 6" class="w-full h-auto object-cover rounded-lg mb-4">
+                            <ul class="text-left list-disc list-inside space-y-2">
+                                <li><a href="#" class="text-primary hover:underline">灰色Polo衫</a> - ￥90</li>
+                                <li><a href="#" class="text-primary hover:underline">灰色休闲裤</a> - ￥110</li>
+                                <li><a href="#" class="text-primary hover:underline">蓝色运动鞋</a> - ￥80</li>
+                            </ul>
+                        </div>
+                        <button id="cycle-soso" class="px-8 py-3 bg-primary text-white rounded-full font-semibold hover:bg-primary/90">换一套</button>
+                    </div>
                 </div>
             </div>
         </section>
-
     </main>
 
-    <!-- 底部 -->
-    <footer class="bg-neutral-800 text-white py-8 mt-auto">
+    <!-- 页脚 -->
+    <footer class="bg-neutral-800 text-white py-8">
         <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2025 Echolook. All rights reserved.</p>
-            <div class="flex justify-center space-x-6 mt-4">
-                <a href="#" class="text-neutral-400 hover:text-white transition-colors"><i class="fa fa-wechat text-2xl"></i></a>
-                <a href="#" class="text-neutral-400 hover:text-white transition-colors"><i class="fa fa-weibo text-2xl"></i></a>
-                <a href="#" class="text-neutral-400 hover:text-white transition-colors"><i class="fa fa-instagram text-2xl"></i></a>
+            <p>&copy; 2023 Echolook. All rights reserved.</p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="#" class="text-neutral-400 hover:text-white transition-colors"><i class="fa fa-facebook-f"></i></a>
+                <a href="#" class="text-neutral-400 hover:text-white transition-colors"><i class="fa fa-twitter"></i></a>
+                <a href="#" class="text-neutral-400 hover:text-white transition-colors"><i class="fa fa-instagram"></i></a>
             </div>
         </div>
     </footer>
 
-    <script>
-        // 获取页面元素
-        const homeSection = document.getElementById('home');
-        const testSection = document.getElementById('test');
-        const thinkingSection = document.getElementById('thinking');
-        const resultSection = document.getElementById('result');
-        const startTestBtn = document.getElementById('start-test-btn');
-        const progressBar = document.getElementById('progress-bar');
-        const progressText = document.getElementById('progress-text');
-        const testQuestionsContainer = document.getElementById('test-questions');
-        const outfitRecommendationsContainer = document.getElementById('outfit-recommendations');
-        const rematchBtn = document.getElementById('rematch-btn');
-
-        let currentQuestionIndex = 0;
-        const questions = Array.from(testQuestionsContainer.getElementsByClassName('question-slide'));
-        let userAnswers = {}; // 存储用户答案
-
-        // 模拟的穿搭数据
-        const mockOutfits = [
-            {
-                id: 'outfit1',
-                image: 'https://placehold.co/400x500/A78BFA/ffffff?text=Y2K+Crop+Top+and+Cargo+Pants',
-                storeName: '潮酷优选旗舰店',
-                price: '¥ 399',
-                link: 'https://www.example.com/shop/y2k-crop-top-cargo-pants-12345' // 更真实的模拟链接
-            },
-            {
-                id: 'outfit2',
-                image: 'https://placehold.co/400x500/FDBA74/ffffff?text=Vintage+Floral+Dress',
-                storeName: '复古风尚古着店',
-                price: '¥ 580',
-                link: 'https://www.example.com/shop/vintage-floral-dress-67890' // 更真实的模拟链接
-            },
-            {
-                id: 'outfit3',
-                image: 'https://placehold.co/400x500/6EE7B7/ffffff?text=American+Denim+Jacket+and+Tee',
-                storeName: '美式休闲馆',
-                price: '¥ 249',
-                link: 'https://www.example.com/shop/denim-jacket-tee-11223' // 更真实的模拟链接
-            },
-            {
-                id: 'outfit4',
-                image: 'https://placehold.co/400x500/9CA3AF/ffffff?text=Minimalist+Linen+Set',
-                storeName: '简致生活美学',
-                price: '¥ 620',
-                link: 'https://www.example.com/shop/minimalist-linen-set-44556' // 更真实的模拟链接
-            },
-            {
-                id: 'outfit5',
-                image: 'https://placehold.co/400x500/EC4899/ffffff?text=Streetwear+Hoodie+and+Sneakers',
-                storeName: '街头潮流集合店',
-                price: '¥ 450',
-                link: 'https://www.example.com/shop/streetwear-hoodie-sneakers-77889' // 更真实的模拟链接
-            },
-            {
-                id: 'outfit6',
-                image: 'https://placehold.co/400x500/818CF8/ffffff?text=Business+Casual+Blazer+and+Slacks',
-                storeName: '职场精英定制',
-                price: '¥ 799',
-                link: 'https://www.example.com/shop/blazer-slacks-business-00112' // 更真实的模拟链接
-            },
-            {
-                id: 'outfit7',
-                image: 'https://placehold.co/400x500/FCD34D/ffffff?text=Boho+Maxi+Skirt+and+Vest',
-                storeName: '波西米亚风情',
-                price: '¥ 320',
-                link: 'https://www.example.com/shop/boho-maxi-skirt-vest-33445' // 更真实的模拟链接
-            },
-            {
-                id: 'outfit8',
-                image: 'https://placehold.co/400x500/D1D5DB/ffffff?text=Classic+Trench+Coat',
-                storeName: '经典雅致女装',
-                price: '¥ 950',
-                link: 'https://www.example.com/shop/classic-trench-coat-55667' // 更真实的模拟链接
-            },
-            {
-                id: 'outfit9',
-                image: 'https://placehold.co/400x500/34D399/ffffff?text=Athleisure+Leggings+and+Sports+Bra',
-                storeName: '运动时尚生活',
-                price: '¥ 280',
-                link: 'https://www.example.com/shop/athleisure-set-88990' // 更真实的模拟链接
-            }
-        ];
-
-        // 显示指定页面
-        function showSection(sectionId) {
-            homeSection.classList.add('hidden');
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const startTestBtn = document.getElementById('start-test-btn');
+    const homeSection = document.getElementById('home');
+    const testSection = document.getElementById('test');
+    const resultSection = document.getElementById('result');
+    const chatMessagesDiv = document.getElementById('chat-messages');
+    const inputOptionsContainer = document.getElementById('input-options-container');
+    const textInputContainer = document.getElementById('text-input-container');
+    const textInputField = document.getElementById('text-input-field');
+    const sendTextAnswerBtn = document.getElementById('send-text-answer-btn');
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    const resultGood = document.getElementById('result-good');
+    const resultSoSo = document.getElementById('result-soso');
+    let questions = [
+        {questionText: "你今天心情怎么样？", inputType: "single_choice", options: [{text: "好", value: "好"}, {text: "一般", value: "一般"}]},
+        {questionText: "你喜欢什么样的风格？", inputType: "text_input"},
+        {questionText: "你的体型和肤色是怎样的？", inputType: "text_input"},
+        {questionText: "你穿衣的主要目的是？", inputType: "text_input"},
+        {questionText: "你偏好的颜色有哪些？", inputType: "text_input"},
+        {questionText: "你喜欢哪种版型或剪裁风格？", inputType: "text_input"},
+        {questionText: "你喜欢什么材质的衣服？", inputType: "text_input"},
+        {questionText: "你通常在哪些场合穿搭？", inputType: "text_input"}
+    ];
+    let answers = [];
+    let qIdx = 0;
+    function displayMessage(text, isUser=false) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('chat-message');
+        messageDiv.classList.add(isUser ? 'user' : 'ai');
+        messageDiv.textContent = text;
+        chatMessagesDiv.appendChild(messageDiv);
+        chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
+    }
+    function showQuestion() {
+        if (qIdx >= questions.length) {
             testSection.classList.add('hidden');
-            thinkingSection.classList.add('hidden');
-            resultSection.classList.add('hidden');
-
-            document.getElementById(sectionId).classList.remove('hidden');
-        }
-
-        // 更新进度条和文本
-        function updateProgressBar() {
-            const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
-            progressBar.style.width = `${progress}%`;
-            progressText.textContent = `问题 ${currentQuestionIndex + 1}/${questions.length}`;
-        }
-
-        // 显示当前问题
-        function showCurrentQuestion() {
-            questions.forEach((q, index) => {
-                if (index === currentQuestionIndex) {
-                    q.classList.remove('hidden');
-                    q.classList.add('active');
-                } else {
-                    q.classList.add('hidden');
-                    q.classList.remove('active');
-                }
-            });
-            updateProgressBar();
-        }
-
-        // 处理选项点击
-        function handleOptionClick(selectedOptionElement) { // Changed parameter name for clarity
-            const currentQuestionSlide = selectedOptionElement.closest('.question-slide');
-            const questionId = currentQuestionSlide.dataset.questionId;
-            const answer = selectedOptionElement.dataset.answer;
-
-            // 移除当前问题所有选项的选中状态
-            Array.from(currentQuestionSlide.querySelectorAll('.option-card')).forEach(card => {
-                card.classList.remove('selected');
-            });
-
-            // 添加选中状态
-            selectedOptionElement.classList.add('selected');
-
-            // 存储答案
-            userAnswers[questionId] = answer;
-
-            // 延迟一小段时间再进入下一题，提供视觉反馈
-            setTimeout(() => {
-                currentQuestionIndex++;
-                if (currentQuestionIndex < questions.length) {
-                    showCurrentQuestion();
-                } else {
-                    // 所有问题回答完毕，进入思考中页面
-                    showSection('thinking');
-                    simulateAIGeneration();
-                }
-            }, 300);
-        }
-
-        // 模拟AI生成过程
-        function simulateAIGeneration() {
-            // 在实际应用中，这里会调用后端AI模型
-            setTimeout(() => {
-                generateOutfitRecommendations();
-                showSection('result');
-            }, 3000); // 模拟3秒的思考时间
-        }
-
-        // 根据用户答案生成并显示穿搭推荐
-        function generateOutfitRecommendations() {
-            // 简单的逻辑：根据某个答案倾向性地选择一些模拟穿搭
-            // 实际应用中，这里会根据userAnswers调用AI API
-            let recommendedOutfits = [];
-            const styleTendency = userAnswers['style_tendency'];
-            const colorPreference = userAnswers['color_preference'];
-
-            if (styleTendency === 'trendy' || colorPreference === 'vibrant') {
-                recommendedOutfits = [mockOutfits[0], mockOutfits[4], mockOutfits[6]]; // Y2K, Streetwear, Boho
-            } else if (styleTendency === 'unique' || colorPreference === 'bold') {
-                recommendedOutfits = [mockOutfits[1], mockOutfits[5], mockOutfits[7]]; // Vintage, Business Casual, Classic
-            } else if (styleTendency === 'casual' || colorPreference === 'natural') {
-                recommendedOutfits = [mockOutfits[2], mockOutfits[8], mockOutfits[3]]; // American Casual, Athleisure, Minimalist
-            } else if (styleTendency === 'elegant' || colorPreference === 'neutral') {
-                recommendedOutfits = [mockOutfits[3], mockOutfits[7], mockOutfits[5]]; // Minimalist, Classic, Business Casual
+            resultSection.classList.remove('hidden');
+            if (answers[0] === "好") {
+                resultGood.classList.remove('hidden');
             } else {
-                // 默认随机选择6个
-                const shuffled = [...mockOutfits].sort(() => 0.5 - Math.random());
-                recommendedOutfits = shuffled.slice(0, 6);
+                resultSoSo.classList.remove('hidden');
             }
-
-            displayRecommendations(recommendedOutfits);
+            return;
         }
-
-        // 将推荐穿搭显示到页面上
-        function displayRecommendations(outfits) {
-            outfitRecommendationsContainer.innerHTML = ''; // 清空现有内容
-            outfits.forEach(outfit => {
-                const outfitCard = `
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                        <img src="${outfit.image}" alt="${outfit.storeName} - ${outfit.price}" class="w-full h-72 object-cover">
-                        <div class="p-5">
-                            <h3 class="font-semibold text-xl text-neutral-800 mb-2">${outfit.storeName}</h3>
-                            <p class="text-primary font-bold text-lg mb-4">${outfit.price}</p>
-                            <a href="${outfit.link}" target="_blank" class="block w-full text-center bg-primary text-white py-3 rounded-full font-medium hover:bg-primary/90 transition-colors">
-                                查看详情 <i class="fa fa-external-link ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                `;
-                outfitRecommendationsContainer.innerHTML += outfitCard;
+        const q = questions[qIdx];
+        displayMessage(q.questionText, false);
+        progressText.textContent = `问题 ${qIdx+1}/${questions.length}`;
+        progressBar.style.width = `${(qIdx)/questions.length*100}%`;
+        inputOptionsContainer.innerHTML = '';
+        textInputContainer.classList.add('hidden');
+        if (q.inputType === "single_choice") {
+            inputOptionsContainer.classList.remove('hidden');
+            q.options.forEach(opt => {
+                const optionCard = document.createElement('div');
+                optionCard.classList.add('option-card');
+                optionCard.textContent = opt.text;
+                optionCard.addEventListener('click', () => {
+                    displayMessage(opt.text, true);
+                    answers.push(opt.value);
+                    qIdx++;
+                    showQuestion();
+                });
+                inputOptionsContainer.appendChild(optionCard);
             });
+        } else {
+            textInputContainer.classList.remove('hidden');
+            textInputField.focus();
         }
-
-        // 事件监听器
-        startTestBtn.addEventListener('click', () => {
-            showSection('test');
-            currentQuestionIndex = 0; // 重置问题索引
-            userAnswers = {}; // 清空答案
-            showCurrentQuestion();
-        });
-
-        rematchBtn.addEventListener('click', () => {
-            showSection('thinking');
-            simulateAIGeneration(); // 重新生成推荐
-        });
-
-        // 为所有选项卡添加点击事件监听器
-        testQuestionsContainer.addEventListener('click', (event) => {
-            const optionCard = event.target.closest('.option-card');
-            if (optionCard) {
-                handleOptionClick(optionCard); // Pass the found optionCard element directly
-            }
-        });
-
-        // 初始化显示首页
-        showSection('home');
-    </script>
+    }
+    startTestBtn.addEventListener('click', () => {
+        homeSection.classList.add('hidden');
+        testSection.classList.remove('hidden');
+        chatMessagesDiv.innerHTML = '';
+        qIdx = 0;
+        answers = [];
+        resultGood.classList.add('hidden');
+        resultSoSo.classList.add('hidden');
+        showQuestion();
+    });
+    sendTextAnswerBtn.addEventListener('click', () => {
+        const ans = textInputField.value.trim();
+        if (ans) {
+            displayMessage(ans, true);
+            answers.push(ans);
+            qIdx++;
+            textInputField.value = '';
+            textInputContainer.classList.add('hidden');
+            showQuestion();
+        }
+    });
+    let goodIndex = 0;
+    let soIndex = 0;
+    const goodVersions = resultGood.querySelectorAll('.outfit-version');
+    const soVersions = resultSoSo.querySelectorAll('.outfit-version');
+    document.getElementById('cycle-good').addEventListener('click', () => {
+        goodVersions[goodIndex].classList.add('hidden');
+        goodIndex = (goodIndex + 1) % goodVersions.length;
+        goodVersions[goodIndex].classList.remove('hidden');
+    });
+    document.getElementById('cycle-soso').addEventListener('click', () => {
+        soVersions[soIndex].classList.add('hidden');
+        soIndex = (soIndex + 1) % soVersions.length;
+        soVersions[soIndex].classList.remove('hidden');
+    });
+});
+</script>
 </body>
 </html>
+
+
